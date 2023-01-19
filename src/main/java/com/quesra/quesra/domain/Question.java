@@ -1,5 +1,6 @@
 package com.quesra.quesra.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,11 +18,12 @@ public class Question {
     @Column
     private String text;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "question" , fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Answer> answers = new ArrayList<>();
 
     public Question(String text) {

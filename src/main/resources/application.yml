@@ -11,7 +11,7 @@ spring:
     driverClassName: org.postgresql.Driver
 
 server:
-    port: 8080
+    port: 8000
 
 springdoc:
   api-docs:
