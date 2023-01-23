@@ -10,4 +10,5 @@ public class QuesraApplication {
 		SpringApplication.run(QuesraApplication.class, args);
 	}
 
+
 }

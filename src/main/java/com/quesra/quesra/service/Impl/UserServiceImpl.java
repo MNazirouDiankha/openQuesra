@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         User existingUser = userRepository.getOne(id);
         existingUser.setUsername(user.getUsername());
-        existingUser.setEmail(user.getEmail());
+        existingUser.setEmail(user.getEmail().toString());
         return userRepository.save(existingUser);
 
     }
@@ -75,5 +75,4 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
 }

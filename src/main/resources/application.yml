@@ -9,6 +9,22 @@ spring:
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
+  # application.yml
+
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: openquesra@gmail.com
+    password: thsyjrzbaprgyoxu
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
 
 server:
     port: 8000
@@ -19,3 +35,4 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui
+

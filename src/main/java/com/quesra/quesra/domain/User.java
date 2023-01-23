@@ -1,7 +1,8 @@
 package com.quesra.quesra.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,19 +30,30 @@ public class User {
     @Column
     private String password;
 
+    private Boolean isEnabled=false;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Question> questions = new ArrayList<>();
 
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
+    }
+
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Answer> answers = new ArrayList<>();
-    public User(String username, String email, String name, String school, String password) {
+    public User(String username, String email, String name, String school, String password, Boolean isEnabled) {
         this.username = username;
         this.email = email;
         this.name = name;
         this.school = school;
         this.password = password;
+        this.isEnabled = isEnabled;
     }
 
     public User() {
@@ -98,6 +110,21 @@ public class User {
 
     public List<Answer> getAnswers() {
         return answers;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id=" + Id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", school='" + school + '\'' +
+                ", password='" + password + '\'' +
+                ", isEnabled=" + isEnabled +
+                ", questions=" + questions +
+                ", answers=" + answers +
+                '}';
     }
 
     public void setAnswers(List<Answer> answers) {
